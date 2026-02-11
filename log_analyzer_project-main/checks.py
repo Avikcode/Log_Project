@@ -13,13 +13,23 @@ log_file = get_file_csv(FILE_NAME)
 # print(ip_check_external(log_file))
 
 
-def ip_check_sensitive_port(file):
-    ip_port = []
-    sensitive_port = ['22', '23', '3389']
+# def ip_check_sensitive_port(file):
+#     ip_port = []
+#     sensitive_port = ['22', '23', '3389']
+#     for log in file:
+#         if log[3] in sensitive_port:
+#             ip_port.append(log)
+#
+#     return ip_port
+#
+# print(ip_check_sensitive_port(log_file))
+
+
+def ip_by_size(file):
+    size = []
     for log in file:
-        if log[3] in sensitive_port:
-            ip_port.append(log)
+        if int(log[5]) > 5000:
+            size.append(log)
 
-    return ip_port
-
-print(ip_check_sensitive_port(log_file))
+    return size
+print(ip_by_size(log_file))
